@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   forwardRef,
   type AnchorHTMLAttributes,
@@ -9,7 +10,6 @@ import { Highlight } from "react-instantsearch";
 import { twMerge } from "tailwind-merge";
 import { useSearchContext } from "../SearchContext";
 import { frameworkOptions } from "../utils";
-import type { Hit } from "../types";
 import { Snippet } from "./Snippet";
 
 const SafeLink = forwardRef(
@@ -48,7 +48,7 @@ export const Result = ({
   hit,
   isFocused,
 }: {
-  hit: Hit;
+  hit: any;
   isFocused?: boolean;
 }) => {
   const { closeSearch } = useSearchContext();

@@ -1,11 +1,9 @@
-import { useHits } from "react-instantsearch";
+import { Hits, useInstantSearch } from "react-instantsearch";
 import { memo } from "react";
-import { type SearchResults } from "algoliasearch-helper";
-import type { Hit } from "../types";
 import { Result } from "./Result";
 
 function NoResults() {
-  const { results } = useHits();
+  const { results } = useInstantSearch();
 
   if (results?.__isArtificial || (results?.nbHits ?? 0) > 0) {
     return null;
@@ -21,12 +19,9 @@ function NoResults() {
   );
 }
 
-type ResultsProps = {
-  hits: Hit[];
-  results: SearchResults<Hit> | undefined;
-};
+export const Results = memo(() => {
+  const { results } = useInstantSearch();
 
-export const Results = memo(({ hits, results }: ResultsProps) => {
   if (!results?.query) {
     return (
       <div className="p-8 text-center text-gray-500 dark:text-gray-400">
@@ -45,9 +40,7 @@ export const Results = memo(({ hits, results }: ResultsProps) => {
       aria-label="Search results"
     >
       <NoResults />
-      {hits.map((hit) => (
-        <Result key={hit.objectID} hit={hit} />
-      ))}
+      <Hits hitComponent={({ hit }) => <Result hit={hit} />} />
     </div>
   );
 });

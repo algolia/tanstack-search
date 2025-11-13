@@ -1,10 +1,9 @@
-import { Configure, InstantSearch, useHits } from "react-instantsearch";
+import { Configure, InstantSearch } from "react-instantsearch";
 import Demo from "../../components/Demo";
 import { SearchButton } from "../../components/SearchButton";
 import { Results } from "../../components/SearchModal";
 import { SearchProvider } from "../../SearchContext";
 import { searchClient } from "../../utils";
-import type { InternalHit } from "../../types";
 import { Modal } from "../../components/Modal";
 
 export default function BaseExample() {
@@ -43,11 +42,9 @@ export default function BaseExample() {
 }
 
 function Content() {
-  const { items, results } = useHits<InternalHit>();
-
   return (
     <Modal>
-      <Results hits={items} results={results} />
+      <Results />
     </Modal>
   );
 }
