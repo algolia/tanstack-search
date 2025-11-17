@@ -29,6 +29,10 @@ export function Libraries() {
     sortBy: ["isRefined:desc", "count:desc", "name:asc"],
   });
 
+  if (items.length < 1) {
+    return null;
+  }
+
   return (
     <div className="overflow-x-auto scrollbar-hide">
       <div className="flex items-center gap-2 p-2 min-w-max">
@@ -67,6 +71,10 @@ export function Frameworks() {
     limit: 50,
     sortBy: ["isRefined:desc", "count:desc", "name:asc"],
   });
+
+  if (items.length < 1) {
+    return null;
+  }
 
   return (
     <div className="overflow-x-auto scrollbar-hide">
