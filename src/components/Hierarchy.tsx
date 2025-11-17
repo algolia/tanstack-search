@@ -3,7 +3,7 @@ import { Frameworks, Libraries, NoResults } from "./SearchModal";
 import type { Hit, InternalHit } from "../types";
 import { SafeLink } from "./Result";
 import { twMerge } from "tailwind-merge";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type PropsWithChildren } from "react";
 import { useSearchContext } from "../SearchContext";
 import { frameworkOptions, groupBy } from "../utils";
 import { Snippet } from "./Snippet";
@@ -82,6 +82,31 @@ const Result = ({
   );
 };
 
+function Group({ group, children }: PropsWithChildren<{ group: string }>) {
+  const framework = frameworkOptions.find((f) => f.value === group);
+
+  return (
+    <div className={twMerge(framework && "p-4")}>
+      {framework && (
+        <div
+          className={twMerge(
+            "inline-flex flex-start items-center gap-1 text-sm font-black bg-white rounded-xl px-2 py-1",
+            framework.color,
+            framework.fg,
+          )}
+        >
+          {framework.label}
+        </div>
+      )}
+      <div
+        className={twMerge(framework && "ml-2 border-l-2", framework?.border)}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function Results() {
   const { items } = useHits<InternalHit>();
 
@@ -90,44 +115,20 @@ function Results() {
   return (
     <>
       {Object.keys(grouped).map((key) => {
-        let framework = null;
         return (
-          <div className="p-4" key={key}>
-            {(() => {
-              framework = frameworkOptions.find((f) => f.value === key);
-              if (!framework) return null;
-
-              return (
-                <div
-                  className={twMerge(
-                    "inline-flex flex-start items-center gap-1 text-sm font-black bg-white rounded-xl px-2 py-1",
-                    framework.color,
-                    framework.fg,
-                  )}
-                >
-                  {framework.label}
-                </div>
-              );
-            })()}
-            <div className={twMerge("ml-2 border-l", framework?.border)}>
-              {Object.values(
-                groupBy(
-                  grouped[key] ?? [],
-                  (item) => item.hierarchy.lvl1 ?? "",
-                ),
-              )
-                .flat()
-                .map((hit, idx) => {
-                  return (
-                    <Result
-                      key={hit.objectID}
-                      hit={hit}
-                      isLastItem={idx === (grouped[key] ?? []).length - 1}
-                    />
-                  );
-                })}
-            </div>
-          </div>
+          <Group key={key} group={key}>
+            {Object.values(
+              groupBy(grouped[key] ?? [], (item) => item.hierarchy.lvl1 ?? ""),
+            )
+              .flat()
+              .map((hit, idx) => (
+                <Result
+                  key={hit.objectID}
+                  hit={hit}
+                  isLastItem={idx === (grouped[key] ?? []).length - 1}
+                />
+              ))}
+          </Group>
         );
       })}
     </>
