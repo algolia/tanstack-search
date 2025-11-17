@@ -1,4 +1,4 @@
-import type { Hit as AlgoliaHit } from "algoliasearch";
+import type { useHits } from "react-instantsearch";
 
 type Hierarchy = Record<string, string | null>;
 
@@ -11,4 +11,4 @@ export type InternalHit = {
   type: string;
 };
 
-export type Hit = AlgoliaHit<InternalHit>;
+export type Hit = ReturnType<typeof useHits<InternalHit>>["items"][0];

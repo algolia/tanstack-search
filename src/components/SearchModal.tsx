@@ -3,8 +3,9 @@ import { memo } from "react";
 import { Result } from "./Result";
 import { capitalize, frameworkOptions } from "../utils";
 import { twMerge } from "tailwind-merge";
+import type { Hit } from "../types";
 
-function NoResults() {
+export function NoResults() {
   const { results } = useInstantSearch();
 
   if (results?.__isArtificial || (results?.nbHits ?? 0) > 0) {
@@ -127,7 +128,7 @@ export const Results = memo(() => {
         aria-label="Search results"
       >
         <NoResults />
-        <Hits hitComponent={({ hit }) => <Result hit={hit} />} />
+        <Hits hitComponent={({ hit }) => <Result hit={hit as Hit} />} />
       </div>
     </>
   );

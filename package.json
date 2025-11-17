@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@docsearch/css": "^4.3.2",
+    "@docsearch/react": "^4.3.2",
     "@headlessui/react": "^2.2.7",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.12",

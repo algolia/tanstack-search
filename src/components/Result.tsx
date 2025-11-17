@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   forwardRef,
   type AnchorHTMLAttributes,
@@ -6,13 +5,13 @@ import {
   useRef,
   useEffect,
 } from "react";
-import { Highlight } from "react-instantsearch";
 import { twMerge } from "tailwind-merge";
 import { useSearchContext } from "../SearchContext";
 import { frameworkOptions } from "../utils";
 import { Snippet } from "./Snippet";
+import type { Hit } from "../types";
 
-const SafeLink = forwardRef(
+export const SafeLink = forwardRef(
   (
     {
       href,
@@ -48,7 +47,7 @@ export const Result = ({
   hit,
   isFocused,
 }: {
-  hit: any;
+  hit: Hit;
   isFocused?: boolean;
 }) => {
   const { closeSearch } = useSearchContext();
@@ -92,7 +91,7 @@ export const Result = ({
       <article className="flex items-center gap-4">
         <div className="flex-1">
           <h3 className="font-bold text-gray-900 dark:text-white">
-            <Highlight hit={hit} attribute="hierarchy.lvl1" />
+            <Snippet hit={hit} attribute="hierarchy.lvl1" />
           </h3>
           {["lvl2", "lvl3", "lvl4", "lvl5", "lvl6"].map((lvl) =>
             hit.hierarchy[lvl] ? (
@@ -100,7 +99,7 @@ export const Result = ({
                 key={lvl}
                 className="text-sm text-gray-500 dark:text-gray-500 mt-1"
               >
-                <Highlight hit={hit} attribute={`hierarchy.${lvl}`} />
+                <Snippet hit={hit} attribute={`hierarchy.${lvl}`} />
               </p>
             ) : null,
           )}

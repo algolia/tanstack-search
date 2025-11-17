@@ -6,23 +6,69 @@ export const searchClient = liteClient(
 );
 
 export const frameworkOptions = [
-  { label: "React", value: "react", color: "bg-blue-500" },
-  { label: "Preact", value: "preact", color: "bg-blue-400" },
-  { label: "Vue", value: "vue", color: "bg-green-500" },
+  {
+    label: "React",
+    value: "react",
+    color: "bg-blue-500",
+    fg: "text-white",
+    border: "border-blue-500",
+  },
+  {
+    label: "Preact",
+    value: "preact",
+    color: "bg-blue-400",
+    fg: "text-white",
+    border: "border-blue-400",
+  },
+  {
+    label: "Vue",
+    value: "vue",
+    color: "bg-green-500",
+    fg: "text-white",
+    border: "border-green-500",
+  },
   {
     label: "Angular",
     value: "angular",
     color: "bg-red-500",
+    fg: "text-white",
+    border: "border-red-500",
   },
-  { label: "Solid", value: "solid", color: "bg-blue-600" },
-  { label: "Lit", value: "lit", color: "bg-orange-500" },
+  {
+    label: "Solid",
+    value: "solid",
+    color: "bg-blue-600",
+    fg: "text-white",
+    border: "border-blue-600",
+  },
+  {
+    label: "Lit",
+    value: "lit",
+    color: "bg-orange-500",
+    fg: "text-white",
+    border: "border-orange-500",
+  },
   {
     label: "Svelte",
     value: "svelte",
     color: "bg-orange-600",
+    fg: "text-white",
+    border: "border-orange-600",
   },
-  { label: "Qwik", value: "qwik", color: "bg-purple-500" },
-  { label: "Vanilla", value: "vanilla", color: "bg-yellow-500" },
+  {
+    label: "Qwik",
+    value: "qwik",
+    color: "bg-purple-500",
+    fg: "text-white",
+    border: "border-purple-500",
+  },
+  {
+    label: "Vanilla",
+    value: "vanilla",
+    color: "bg-yellow-500",
+    fg: "text-white",
+    border: "border-yellow-500",
+  },
 ] as const;
 
 export function groupBy<TValue extends Record<string, unknown>>(
