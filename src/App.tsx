@@ -1,6 +1,5 @@
 import { ThemeButton } from "./components/ThemeButton";
 import BaseExample from "./examples/base";
-import HierarchyExample from "./examples/hierarchy";
 import { ThemeProvider } from "./ThemeContext";
 
 function App() {
@@ -10,7 +9,6 @@ function App() {
       <div className="grid h-dvh w-full place-items-center justify-center">
         <div className="grid gap-8">
           <BaseExample />
-          <HierarchyExample />
         </div>
       </div>
     </ThemeProvider>

@@ -8,7 +8,7 @@ import { Modal } from "../../components/Modal";
 
 export default function BaseExample() {
   return (
-    <Demo title="Basic example">
+    <Demo title="Tanstack search">
       <SearchProvider>
         <SearchButton />
         <InstantSearch searchClient={searchClient} indexName="Tanstack DS">
