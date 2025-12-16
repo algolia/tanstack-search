@@ -115,8 +115,6 @@ function Results() {
     (item) => item.framework ?? item.library ?? "",
   );
 
-  console.dir(grouped);
-
   return (
     <>
       {Object.keys(grouped).map((key) => {

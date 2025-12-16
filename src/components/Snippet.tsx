@@ -20,12 +20,13 @@ type SnippetProps = {
 };
 
 export function Snippet({ hit, attribute, tagName = "span" }: SnippetProps) {
+  const content =
+    getPropertyByPath(hit, `_snippetResult.${attribute}.value`) ||
+    getPropertyByPath(hit, attribute);
+
   return createElement(tagName, {
-    className: "Snippet",
     dangerouslySetInnerHTML: {
-      __html:
-        getPropertyByPath(hit, `_snippetResult.${attribute}.value`) ||
-        getPropertyByPath(hit, attribute),
+      __html: content,
     },
   });
 }
