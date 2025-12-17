@@ -1,0 +1,78 @@
+{
+  "settings": {
+    "minWordSizefor1Typo": 5,
+    "minWordSizefor2Typos": 9,
+    "hitsPerPage": 20,
+    "maxValuesPerFacet": 100,
+    "minProximity": 2,
+    "searchableAttributes": [
+      "unordered(hierarchy.lvl0)",
+      "unordered(hierarchy.lvl1)",
+      "unordered(hierarchy.lvl2)",
+      "unordered(hierarchy.lvl3)",
+      "unordered(hierarchy.lvl4)",
+      "unordered(hierarchy.lvl5)",
+      "unordered(hierarchy.lvl6)",
+      "content",
+      "unordered(library)",
+      "unordered(framework)",
+      "unordered(version)"
+    ],
+    "numericAttributesToIndex": null,
+    "attributesToRetrieve": null,
+    "allowTyposOnNumericTokens": false,
+    "ignorePlurals": true,
+    "camelCaseAttributes": [
+      "hierarchy",
+      "content"
+    ],
+    "advancedSyntax": true,
+    "attributeCriteriaComputedByMinProximity": true,
+    "distinct": true,
+    "unretrievableAttributes": null,
+    "optionalWords": null,
+    "attributesForFaceting": [
+      "framework",
+      "lang",
+      "library",
+      "type",
+      "version"
+    ],
+    "attributesToSnippet": [
+      "content:20"
+    ],
+    "attributesToHighlight": [
+      "content",
+      "hierachy"
+    ],
+    "paginationLimitedTo": 1000,
+    "attributeForDistinct": "url",
+    "exactOnSingleWordQuery": "attribute",
+    "ranking": [
+      "proximity",
+      "words",
+      "filters",
+      "typo",
+      "attribute",
+      "exact",
+      "custom"
+    ],
+    "customRanking": [
+      "desc(weight.pageRank)",
+      "desc(weight.level)",
+      "asc(weight.position)"
+    ],
+    "separatorsToIndex": "'-\"",
+    "removeWordsIfNoResults": "allOptional",
+    "queryType": "prefixLast",
+    "highlightPreTag": "<span class=\"algolia-docsearch-suggestion--highlight\">",
+    "highlightPostTag": "</span>",
+    "snippetEllipsisText": "...",
+    "alternativesAsExact": [
+      "ignorePlurals",
+      "singleWordSynonym"
+    ]
+  },
+  "rules": [],
+  "synonyms": []
+}

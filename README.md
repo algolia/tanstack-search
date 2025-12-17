@@ -8,16 +8,18 @@ Example app is deployed [here](https://tanstack-search.netlify.app/)
 
 ## Proposed changes
 
+> The index configuration from the test/playground index we've been using is included in this repo as `index_configuration.json`
+
 #### Ranking and Sorting
 
 Update the `TEXTUAL` ranking as follows:
 
 ```ts
+"proximity",
 "words",
 "filters",
 "typo",
 "attribute",
-"proximity",
 "exact",
 "custom",
 ```
@@ -53,6 +55,10 @@ Snippet text
 `'' -> '...'`
 
 > Optional, but feel like the `...` elludes to it not being the end of content
+
+#### Special characters
+
+Add `'-"` to "Separators characters to index"
 
 #### UI changes
 
@@ -155,7 +161,7 @@ The record extractor was modified to behave like so:
             lvl0: {
               selectors: "",
               // Use the `framework` as `lvl0` - the "highest" in the hierarchy
-              defaultValue: framework || "Documentation",
+              defaultValue: framework || library || "Documentation",
             },
             // Using `:first` here incase there are multiple `h1`s on a page
             lvl1: ["header h1", "article h1", "main h1:first", "h1:first"],
